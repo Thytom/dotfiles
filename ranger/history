@@ -1,0 +1,50 @@
+mkdir El Camino
+
+mkdir Royal Blood (B Sides)
+mkdir Joji
+rename [2018] BALLADS 1
+rename [1980] Back In Black
+rename [2006] Whatever People Say I Am, That Is What I'm Not
+rename [2016] Awaken, My Love!
+mkdir Crobot
+rename cover.jpg
+wq
+mkdir Batman
+mkdir [2008] The Dark Knight
+rename The Two Towers.mp4
+rename [2010] Iron Man 2.srt
+mkdir Bluepink
+rename flat-skyline.jpg
+rename flat-hex.jpg
+rename flat-blue-mountain
+rename flat-quad.jpg
+rename flat-blue-mountain.jpg
+rename flat-desert-sunset
+rename flat-desert-sunset.jpg
+mkdir OSX
+rename Mojave
+rename 
+rename colourful-lights.jpg
+rename hooded-anime-girl.jpg
+rename snowy-mountain.jpg
+mkdir Flat
+mkdir City Nights
+mkdir 
+mkdir Anime
+mkdir Retro
+mkdir Landscapes
+shell du -h Wallpapers
+delete
+shell
+open_with vim
+find .tmp
+mkdir tmp
+find tm
+mkdir directory
+shell touch text-file.txt
+find .config
+find .i
+open_with 
+mkdir .dotfiles
+cd .dotfiles
+find .bash
