@@ -1,0 +1,20 @@
+#!/bin/bash
+
+VOLUME=$(/usr/share/i3blocks/volume pulse | sed 's/%//g')
+GLYPH=
+
+if [[ $VOLUME == "MUTE" ]]
+then
+	GLYPH=
+elif (( $VOLUME >= 75 ))
+then
+	GLYPH=
+elif (( $VOLUME >= 25 ))
+then
+	GLYPH=
+elif (( $VOLUME < 25 ))
+then
+	GLYPH=
+fi
+
+echo "<span font=\"FontAwesome 13\">$GLYPH</span> ($VOLUME%)"

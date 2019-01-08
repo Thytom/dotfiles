@@ -19,6 +19,7 @@ call plug#end()
 	syntax on
 	set encoding=utf-8
 	set number relativenumber
+	set nohlsearch
 " Disables automatic commenting on newline:
 	colorscheme ron
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o

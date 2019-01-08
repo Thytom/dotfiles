@@ -46,7 +46,7 @@ i3lock \
 		-t -i "$NEWBG" \
 		--timepos="x+110:h-70" \
 		--datepos="x+135:h-45" \
-		--clock --datestr "Type password to unlock..." \
+		--clock --datestr "$(date +"%A %d %B %Y")" \
 		--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
 		--keyhlcolor=$blue --bshlcolor=$red --separatorcolor=$bg \
 		--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
