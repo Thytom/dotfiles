@@ -1,0 +1,44 @@
+#!/bin/bash
+
+#This is a simplified version of wallpaperChanger that doesn't involve grabbing sunrise and set data.
+#It's a lot of work for something that can be generalised to just numbers and be a whole lot easier to manage.
+
+setWallpaper="feh --bg-scale"
+
+#Get dbus working
+#DBUS=$(/bin/ps aux | /bin/egrep "/gnome-session/.*\s--session=" | /usr/bin/awk '{print $2}')
+export $(/bin/cat /home/archie/.dbus/session-bus/* | /bin/egrep DBUS_SESSION_BUS_ADDRESS | /usr/bin/awk '{print $2}')
+export DISPLAY=:0
+
+#This script assumes everything is already in place.
+
+#Shortcut to walltab
+walltab="/home/archie/.config/wallpaperChanger/walltab"
+
+#Get the current time
+currentH=$(/bin/date +%H)
+currentM=$(/bin/date +%M | /bin/sed 's/0//') #Remove One Leading 0
+
+#Convert entirely to minutes
+currentM=$(( $currentH * 60 + $currentM ))
+
+#Go through each line of walltab
+while IFS= read -r line;do
+	#Read file line
+	wallPath=$(echo $line | /usr/bin/awk '{split($0, a, ";"); gsub("\047", "", a[1]); print(a[1])}')
+
+	wallTime=$(echo $line | /usr/bin/awk '{split($0, a, ";"); print(a[2])}')
+        wallH=$(echo $wallTime | /usr/bin/awk '{split($0, a, ":"); print(a[1])}')
+        wallM=$(echo $wallTime | /usr/bin/awk '{split($0, a, ":"); print(a[2])}')
+        wallM=$(( $wallH * 60 + $wallM ))
+
+	#If we're past the bracket change the variable
+        if [ $currentM -ge $wallM ]
+        then
+            newWallpaper="$wallPath"
+            echo "New wallpaper: $wallPath"
+        fi
+done < $walltab
+
+$setWallpaper $newWallpaper
+echo $newWallpaper > /home/archie/.config/wallpaperChanger/currentWallpaper

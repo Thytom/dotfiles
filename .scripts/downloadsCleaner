@@ -1,0 +1,21 @@
+#!/bin/bash
+
+filesCleared=0
+
+for f in ~/Downloads/*
+do
+	modSeconds=$(/bin/date +%s -r $f)	
+	currentSecond=$(/bin/date +%s)
+	ageSeconds=$((currentSecond - modSeconds))
+
+	if (($ageSeconds > 900))
+	then
+		/bin/rm -rf $f
+		filesCleared=$((filesCleared + 1))
+	fi
+done
+
+if (($filesCleared > 0 ))
+then
+	/usr/bin/notify-send -i user-trash "Deleted $filesCleared files from Downloads"
+fi
