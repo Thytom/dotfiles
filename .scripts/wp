@@ -1,16 +1,15 @@
 #!/bin/bash
 
-if [ ! -f $1 ];
+if [ ! -f "$1" ];
 then
     echo "ERROR: $1 does not exist."
     exit 1
 fi
 
-IMGDIR=$(/usr/bin/realpath $1)
+IMGDIR=$(/usr/bin/realpath $(echo "$1" | sed 's/ /\\ /g'))
 
 echo "Changing Wallpaper to $1..."
-echo "$IMGDIR;00:00" > $HOME/.config/wallpaperChanger/walltab
+feh --bg-scale $IMGDIR
 echo "$IMGDIR" > $HOME/.config/wallpaperChanger/currentWallpaper
 echo "Done."
-/home/archie/.scripts/simpleWallpaperChanger
 exit 0
