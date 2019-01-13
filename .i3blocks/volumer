@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VOLUME=$(/usr/share/i3blocks/volume pulse | sed 's/%//g')
+VOLUME=$(/usr/lib/i3blocks/volume pulse | sed 's/%//g')
 GLYPH=
 
 if [[ $VOLUME == "MUTE" ]]

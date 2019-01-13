@@ -7,10 +7,10 @@
 let mapleader =","
 
 call plug#begin('~/.vim/plugged')
-Plug 'junegunn/goyo.vim'
-Plug 'tpope/vim-surround'
-Plug 'rstacruz/sparkup'
-Plug 'tomtom/tcomment_vim'
+	Plug 'junegunn/goyo.vim'
+	Plug 'tpope/vim-surround'
+	Plug 'rstacruz/sparkup'
+	Plug 'tomtom/tcomment_vim'
 call plug#end()
 
 " Some basics:
@@ -20,6 +20,7 @@ call plug#end()
 	set encoding=utf-8
 	set number relativenumber
 	set nohlsearch
+	set smartcase
 " Disables automatic commenting on newline:
 	colorscheme ron
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -32,6 +33,10 @@ call plug#end()
 
 " Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
 	set splitbelow splitright
+
+" Better tablation
+	xnoremap > >gv
+	xnoremap < <gv
 
 " Shortcutting split navigation, saving a keypress:
 	map <C-h> <C-w>h

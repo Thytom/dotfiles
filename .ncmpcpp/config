@@ -62,7 +62,7 @@ visualizer_output_name = Visualizer Feed
 ##
 ## If you set format to 44100:16:2, make it 'yes'.
 ##
-visualizer_in_stereo = yes
+visualizer_in_stereo = no
 #
 ##
 ## Note: Below parameter defines how often ncmpcpp has to "synchronize"
@@ -71,7 +71,7 @@ visualizer_in_stereo = yes
 ## that sane values start with >=10.
 ##
 #
-visualizer_sync_interval = 10
+visualizer_sync_interval = 30
 #
 ##
 ## Note: To enable spectrum frequency visualization you need to compile ncmpcpp
@@ -82,13 +82,13 @@ visualizer_sync_interval = 10
 ##
 visualizer_type = spectrum
 #
-#visualizer_look = ●▮
+visualizer_look = \\
 #
 #visualizer_color = blue, cyan, green, yellow, magenta, red
 #
 ## Alternative subset of 256 colors for terminals that support it.
 ##
-#visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
+visualizer_color = 41, 83, 119, 155, 185, 215, 209, 203, 197, 161
 #
 ##### system encoding #####
 ##
