@@ -254,6 +254,7 @@ bindsym $alt+Print exec --no-startup-id scrot -e 'mv $f ~/Pictures/Screenshots/$
 bindsym $mod+c exec --no-startup-id urxvt -e nvim ~/.config/i3/config
 bindsym $mod+m exec --no-startup-id urxvt -e ncmpcpp
 bindsym $mod+Shift+s exec --no-startup-id urxvt -e cmatrix -u 6 -b -C cyan
+bindsym $mod+n exec --no-startup-id urxvt -e neofetch
 
 new_window pixel 0
 

@@ -60,7 +60,7 @@ then
 		--verifcolor="$green" --noinputtext="" --indicator -n; i3-msg kill
 else
 	i3-msg workspace number 2
-	urxvt -e cmatrix -b -a -u 3 -o -C cyan &
+	urxvt -e cmatrix -b -a -u 2 -o -C cyan &
 	sleep 0.2
 	i3-msg fullscreen
 

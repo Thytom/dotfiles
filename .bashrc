@@ -119,3 +119,4 @@ fi
 export PATH=/home/archie/.scripts:$PATH
 RANGER_USE_DEFAULT_RC=false
 export EDITOR=vim
+# neofetch
