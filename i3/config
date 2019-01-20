@@ -88,8 +88,8 @@ bindsym $mod+v split v
 bindsym $mod+Shift+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
+# bindsym $mod+s layout stacking
+# bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
@@ -253,8 +253,9 @@ bindsym Print exec --no-startup-id scrot -e 'mv $f ~/Pictures/Screenshots/$f && 
 bindsym $alt+Print exec --no-startup-id scrot -e 'mv $f ~/Pictures/Screenshots/$f && feh ~/Pictures/Screenshots/$f'
 bindsym $mod+c exec --no-startup-id urxvt -e nvim ~/.config/i3/config
 bindsym $mod+m exec --no-startup-id urxvt -e ncmpcpp
-bindsym $mod+Shift+s exec --no-startup-id urxvt -e cmatrix -u 6 -b -C cyan
+# bindsym $mod+Shift+s exec --no-startup-id urxvt -e cmatrix -u 6 -b -C cyan
 bindsym $mod+n exec --no-startup-id urxvt -e neofetch
+bindsym $mod+w exec --no-startup-id /home/archie/.scripts/wifi-selector
 
 new_window pixel 0
 
@@ -278,9 +279,12 @@ set $mode_gaps Toggle gaps: (1) on (2) off
 bindsym $mod+G mode "$mode_gaps"
 mode "$mode_gaps" {
     bindsym 1 mode "default", gaps inner all set 10, gaps outer all set 4
-    bindsym 2 mode "default", gaps inner all set 1, gaps outer all set 1
+    bindsym 2 mode "default", gaps inner all set 1, gaps outer all set 0
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
+
+bindsym $mod+s gaps outer current plus 5
+bindsym $mod+Shift+s gaps outer current minus 5
 
 for_window [class="mailspring"] floating disable

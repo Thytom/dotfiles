@@ -25,7 +25,7 @@ then
     touch $TMPBG
 fi
 
-if [[ $isDifferent == "differ" ]] || [[ ! -f $NEWBG ]]
+if [[ $isDifferent != "" ]] || [[ ! -f $NEWBG ]]
 then
 	cp "$currentwallpaper" $TMPBG
 	convert $TMPBG -resize 1366x768^ $TMPBG
@@ -44,12 +44,11 @@ fi
 if [[ $(/home/archie/.scripts/mpdstatus) == "playing" ]]
 then
 	# Avoids messing with fullscreen firefox.
-	i3-msg workspace number 2
+	i3-msg workspace number 11
+	i3-msg split v
 	urxvt -e ncmpcpp -s visualizer &
 	sleep 0.2
 
-	i3-msg fullscreen
-
 	i3lock \
 		-t -i "$NEWBG" \
 		--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
@@ -57,21 +56,34 @@ then
 		--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
 		--ringvercolor=$blue --ringwrongcolor=$red --indpos="(w/2):(h/2)" \
 		--radius=110 --ring-width=3 --veriftext="" --wrongtext="" \
-		--verifcolor="$green" --noinputtext="" --indicator -n; i3-msg kill
+		--verifcolor="$green" --noinputtext="" --indicator -n; i3-msg kill; i3-msg kill; i3-msg kill;
 else
-	i3-msg workspace number 2
-	urxvt -e cmatrix -b -a -u 2 -o -C cyan &
-	sleep 0.2
-	i3-msg fullscreen
-
 	i3lock \
 		-t -i "$NEWBG" \
+		--timepos="x+110:h-70" \
+		--datepos="x+130:h-45" \
+		--clock --datestr "$(date +"%A %d %B %Y")" \
 		--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
 		--keyhlcolor=$blue --bshlcolor=$red --separatorcolor=$bg \
 		--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
 		--ringvercolor=$blue --ringwrongcolor=$red --indpos="(w/2):(h/2)" \
 		--radius=110 --ring-width=3 --veriftext="" --wrongtext="" \
-		--verifcolor="$green" --noinputtext="" --indicator -n; i3-msg kill
+		--verifcolor="$green" --timecolor="$bg" --datecolor="$bg" \
+		--noinputtext="" --force-clock --indicator -n & sleep 0.1; transset-df -n i3lock 2 -x 2
+	#Cmatrix
+	# i3-msg workspace number 11
+	# urxvt -e cmatrix -b -a -u 2 -o -C cyan &
+	# sleep 0.2
+	# i3-msg fullscreen
+        #
+	# i3lock \
+	# 	-t -i "$NEWBG" \
+	# 	--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
+	# 	--keyhlcolor=$blue --bshlcolor=$red --separatorcolor=$bg \
+	# 	--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
+	# 	--ringvercolor=$blue --ringwrongcolor=$red --indpos="(w/2):(h/2)" \
+	# 	--radius=110 --ring-width=3 --veriftext="" --wrongtext="" \
+	# 	--verifcolor="$green" --noinputtext="" --indicator -n; i3-msg kill
 fi
 
 # NO BACKGROUND PROGRAM:

@@ -22,4 +22,5 @@ then
 	GLYPH=
 fi
 
-echo "<span font=\"FontAwesome 13\">$GLYPH</span> ($VOLUME)"
+# echo "<span font=\"FontAwesome 13\">$GLYPH</span> ($VOLUME)"
+echo "<span font=\"FontAwesome 13\">$GLYPH</span>"
