@@ -1,10 +1,11 @@
 #!/bin/bash
 
 DELAY=0
-DATE=$(date +%y-%m-%d-%H-%M)
+DATE=$(date +%y-%m-%d-%H-%M-%S)
 SCREENSHOTTER="/usr/bin/import -window root"
 SAVE_LOCATION="$HOME/Pictures/Screenshots/"
-FILENAME="$SAVE_LOCATION$DATE.png"
+FILENAME="$DATE.png"
+FULL_PATH="$SAVE_LOCATION$FILENAME"
 
 
 usage() {
@@ -18,7 +19,8 @@ END
 }
 
 no-delay() {
-	$SCREENSHOTTER $FILENAME
+	$SCREENSHOTTER $FULL_PATH
+	/usr/bin/notify-send "Screenshot Saved" "$FULL_PATH"
 	exit 0
 }
 
@@ -41,7 +43,8 @@ fi
 
 if [[ ! -z "$2" ]]
 then
-	FILENAME="$2"
+	FULL_PATH="$2"
 fi
 
-sleep $(calc $1/1000); $SCREENSHOTTER $FILENAME
+sleep $(calc $1/1000);$SCREENSHOTTER $FULL_PATH
+/usr/bin/notify-send "Screenshot Saved" "$FULL_PATH" -t 5000

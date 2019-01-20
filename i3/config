@@ -256,6 +256,7 @@ bindsym $mod+m exec --no-startup-id urxvt -e ncmpcpp
 # bindsym $mod+Shift+s exec --no-startup-id urxvt -e cmatrix -u 6 -b -C cyan
 bindsym $mod+n exec --no-startup-id urxvt -e neofetch
 bindsym $mod+w exec --no-startup-id /home/archie/.scripts/wifi-selector
+bindsym $mod+Print exec --no-startup-id /home/archie/.scripts/scrsht 3
 
 new_window pixel 0
 
