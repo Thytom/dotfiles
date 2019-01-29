@@ -15,20 +15,28 @@ red=#f4424bff
 blue=#4286f4ee
 
 TMPBG=/tmp/screen.jpg
-ICON=$HOME/.icons/locksmall.png
-currentwallpaper=$(cat /home/archie/.config/wallpaperChanger/currentWallpaper | awk '{gsub("file://", ""); print $0}')
-isDifferent=$(diff "$currentwallpaper" $TMPBG | grep differ)
+ICON=$HOME/.icons/locksmall3.png
 NEWBG=/tmp/screen2.jpg
+currentwallpaper=/tmp/cw
+
+if [[ ! -f $currentwallpaper ]]
+then
+	cp /home/archie/.config/wallpaperChanger/currentWallpaper /tmp/cw
+	currentwallpaper=/tmp/cw
+fi
 
 if [[ ! -f $TMPBG ]]
 then
-    touch $TMPBG
+	cp "$(cat $currentwallpaper)" /tmp/screen.jpg
 fi
 
-if [[ $isDifferent != "" ]] || [[ ! -f $NEWBG ]]
+isDifferent=$(diff "$currentwallpaper" /home/archie/.config/wallpaperChanger/currentWallpaper >> /dev/null;echo $?)
+
+if [[ $isDifferent != "0" ]] || [[ ! -f $NEWBG ]]
 then
-	cp "$currentwallpaper" $TMPBG
-	convert $TMPBG -resize 1366x768^ $TMPBG
+	cp /home/archie/.config/wallpaperChanger/currentWallpaper /tmp/cw
+	cp "$(cat $currentwallpaper)" $TMPBG
+	convert $TMPBG -resize 1366x768\! $TMPBG
 	convert $TMPBG -blur 0x8 $NEWBG
 	convert $NEWBG -fill black -colorize 40 $NEWBG
 	convert $NEWBG $ICON -gravity center -composite -matte $NEWBG
@@ -41,51 +49,63 @@ fi
 #
 ##Blur
 
-if [[ $(/home/archie/.scripts/mpdstatus) == "playing" ]]
-then
-	# Avoids messing with fullscreen firefox.
-	i3-msg workspace number 11
-	i3-msg split v
-	urxvt -e ncmpcpp -s visualizer &
-	sleep 0.2
+# if [[ $(/home/archie/.scripts/mpdstatus) == "playing" ]]
+# then
+# 	# Avoids messing with fullscreen firefox.
+# 	i3-msg workspace number 11
+# 	i3-msg split v
+# 	urxvt -e ncmpcpp -s visualizer &
+# 	sleep 0.2
+#
+# 	i3lock \
+# 		-t -i "$NEWBG" \
+# 		--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
+# 		--keyhlcolor=$blue --bshlcolor=$red --separatorcolor=$bg \
+# 		--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
+# 		--ringvercolor=$blue --ringwrongcolor=$red --indpos="(w/2):(h/2)" \
+# 		--radius=110 --ring-width=3 --veriftext="" --wrongtext="" \
+# 		--verifcolor="$green" --noinputtext="" --indicator -n; i3-msg kill; i3-msg kill; i3-msg kill;
+# else
+# 	i3lock \
+# 		-t -i "$NEWBG" \
+# 		--timepos="x+110:h-70" \
+# 		--datepos="x+130:h-45" \
+# 		--clock --datestr "$(date +"%A %d %B %Y")" \
+# 		--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
+# 		--keyhlcolor=$blue --bshlcolor=$red --separatorcolor=$bg \
+# 		--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
+# 		--ringvercolor=$blue --ringwrongcolor=$red --indpos="(w/2):(h/2)" \
+# 		--radius=110 --ring-width=3 --veriftext="" --wrongtext="" \
+# 		--verifcolor="$green" --timecolor="$bg" --datecolor="$bg" \
+# 		--noinputtext="" --force-clock --indicator -n & sleep 0.1; transset-df -n i3lock 2 -x 2
+# fi
 
-	i3lock \
-		-t -i "$NEWBG" \
-		--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
-		--keyhlcolor=$blue --bshlcolor=$red --separatorcolor=$bg \
-		--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
-		--ringvercolor=$blue --ringwrongcolor=$red --indpos="(w/2):(h/2)" \
-		--radius=110 --ring-width=3 --veriftext="" --wrongtext="" \
-		--verifcolor="$green" --noinputtext="" --indicator -n; i3-msg kill; i3-msg kill; i3-msg kill;
-else
-	i3lock \
-		-t -i "$NEWBG" \
-		--timepos="x+110:h-70" \
-		--datepos="x+130:h-45" \
-		--clock --datestr "$(date +"%A %d %B %Y")" \
-		--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
-		--keyhlcolor=$blue --bshlcolor=$red --separatorcolor=$bg \
-		--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
-		--ringvercolor=$blue --ringwrongcolor=$red --indpos="(w/2):(h/2)" \
-		--radius=110 --ring-width=3 --veriftext="" --wrongtext="" \
-		--verifcolor="$green" --timecolor="$bg" --datecolor="$bg" \
-		--noinputtext="" --force-clock --indicator -n & sleep 0.1; transset-df -n i3lock 2 -x 2
-	#Cmatrix
-	# i3-msg workspace number 11
-	# urxvt -e cmatrix -b -a -u 2 -o -C cyan &
-	# sleep 0.2
-	# i3-msg fullscreen
-        #
-	# i3lock \
-	# 	-t -i "$NEWBG" \
-	# 	--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
-	# 	--keyhlcolor=$blue --bshlcolor=$red --separatorcolor=$bg \
-	# 	--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
-	# 	--ringvercolor=$blue --ringwrongcolor=$red --indpos="(w/2):(h/2)" \
-	# 	--radius=110 --ring-width=3 --veriftext="" --wrongtext="" \
-	# 	--verifcolor="$green" --noinputtext="" --indicator -n; i3-msg kill
-fi
-
+i3lock \
+	-t -i "$NEWBG" \
+	--timepos="x+110:h-70" \
+	--datepos="x+130:h-45" \
+	--clock --datestr "$(date +"%A %d %B %Y")" \
+	--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
+	--keyhlcolor=$blue --bshlcolor=$red --separatorcolor=$bg \
+	--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
+	--ringvercolor=$blue --ringwrongcolor=$red --indpos="(w/2):(h/2)" \
+	--radius=110 --ring-width=3 --veriftext="" --wrongtext="" \
+	--verifcolor="$green" --timecolor="$bg" --datecolor="$bg" \
+	--noinputtext="" --force-clock --indicator -n & sleep 0.1; transset-df -n i3lock 2 -x 2
+#Cmatrix
+# i3-msg workspace number 11
+# urxvt -e cmatrix -b -a -u 2 -o -C cyan &
+# sleep 0.2
+# i3-msg fullscreen
+#
+# i3lock \
+# 	-t -i "$NEWBG" \
+# 	--insidecolor=#00000000 --ringcolor=$bg --line-uses-inside \
+# 	--keyhlcolor=$blue --bshlcolor=$red --separatorcolor=$bg \
+# 	--insidevercolor=#00000000 --insidewrongcolor=#00000000 \
+# 	--ringvercolor=$blue --ringwrongcolor=$red --indpos="(w/2):(h/2)" \
+# 	--radius=110 --ring-width=3 --veriftext="" --wrongtext="" \
+# 	--verifcolor="$green" --noinputtext="" --indicator -n; i3-msg kill
 # NO BACKGROUND PROGRAM:
 # i3lock \
 # 	-t -i "$NEWBG" \

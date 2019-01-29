@@ -12,8 +12,8 @@
 currentPercentage=$(/bin/cat /sys/class/power_supply/BAT0/capacity)
 lastAlert=$(/bin/cat /home/archie/.config/powerAlert/lastAlert)
 
-urgentTitle='WARNING: BATTERY CRITICAL'
-urgentMessage='Battery is critical. Plug in and save work as soon as possible'
+urgentTitle='OH GOD OH FUCK'
+urgentMessage="Mrs Obama, it's been an honor. Plug me in, chief."
 
 lowTitle='Battery Low'
 lowMessage='Battery is running low. Consider plugging in.'
