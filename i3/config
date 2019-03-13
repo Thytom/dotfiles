@@ -90,7 +90,7 @@ bindsym $mod+Shift+f fullscreen toggle
 # change container layout (stacked, tabbed, toggle split)
 # bindsym $mod+s layout stacking
 # bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
+# bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
 bindsym $mod+Shift+space floating toggle
@@ -204,7 +204,7 @@ bar {
         # hidden_state hide
         # modifier $alt
 	output primary
-	tray_output none
+	tray_output hidden
 	strip_workspace_numbers yes
 	position	top
 	colors {
@@ -264,10 +264,11 @@ bindsym $alt+Print exec --no-startup-id scrot -e 'mv $f ~/Pictures/Screenshots/$
 bindsym $mod+c exec --no-startup-id urxvt -e nvim ~/.config/i3/config
 bindsym $mod+m exec --no-startup-id urxvt -e ncmpcpp
 # bindsym $mod+Shift+s exec --no-startup-id urxvt -e cmatrix -u 6 -b -C cyan
-bindsym $mod+n exec --no-startup-id urxvt -e calcurse
+bindsym $mod+n exec --no-startup-id urxvt -e bash -c "VISUAL=/usr/bin/nvim && calcurse"
 bindsym $mod+w exec --no-startup-id /home/archie/.scripts/wifi-selector
 bindsym $mod+Print exec --no-startup-id /home/archie/.scripts/scrsht 3
 bindsym $mod+b exec --no-startup-id firefox
+bindsym $mod+e exec --no-startup-id qpaeq
 
 new_window pixel 0
 
@@ -300,3 +301,4 @@ bindsym $mod+s gaps outer current plus 5
 bindsym $mod+Shift+s gaps outer current minus 5
 
 for_window [class="mailspring"] floating disable
+for_window [class="nautilus"] floating disable

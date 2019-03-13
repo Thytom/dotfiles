@@ -10,4 +10,10 @@ text_color=$(/bin/cat /home/archie/.config/i3/config | grep -e "set \$text-color
 CHOSEN_CONNECTION=$(/usr/bin/netctl list| tr -d ' ' | /usr/bin/dmenu -p "Pick a network:" -nb "$bg_color" -nf "$text_color" | sed 's/\*//g;s/\+//g')
 
 /usr/bin/sudo /usr/bin/netctl stop-all
-/usr/bin/sudo /usr/bin/netctl start $CHOSEN_CONNECTION; /usr/bin/notify-send "Wifi Connected" "Connected to $CHOSEN_CONNECTION" -t 2000
+/usr/bin/sudo /usr/bin/netctl start $CHOSEN_CONNECTION;
+if (( $? == 0 ))
+then
+	/usr/bin/notify-send "Wifi Connected" "Connected to $CHOSEN_CONNECTION" -t 2000
+else
+	/usr/bin/notify-send --ugency=critical "Wifi Not Connected" "Failed Connection to $CHOSEN_CONNECTION" -t 2000
+fi

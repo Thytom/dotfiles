@@ -14,38 +14,42 @@ green=#42f47dee
 red=#f4424bff
 blue=#4286f4ee
 
-TMPBG=/tmp/screen.jpg
-ICON=$HOME/.icons/locksmall3.png
-NEWBG=/tmp/screen2.jpg
-currentwallpaper=/tmp/cw
+TMPBG=/home/archie/.config/lockScreen/screen.png
+ICON=$HOME/.icons/locksmall4.png
+cp $ICON /home/archie/.config/lockScreen/icon.png
+RICON=/home/archie/.config/lockScreen/icon.png
+NEWBG=/home/archie/.config/lockScreen/screen2.png
+currentwallpaper=/home/archie/.config/lockScreen/cw
 
 if [[ ! -f $currentwallpaper ]]
 then
-	cp /home/archie/.config/wallpaperChanger/currentWallpaper /tmp/cw
-	currentwallpaper=/tmp/cw
+	cp /home/archie/.config/wallpaperChanger/currentWallpaper /home/archie/.config/lockScreen/cw
+	currentwallpaper=/home/archie/.config/lockScreen/cw
 fi
 
 if [[ ! -f $TMPBG ]]
 then
-	cp "$(cat $currentwallpaper)" /tmp/screen.jpg
+	cp "$(cat $currentwallpaper)" $TMPBG
 fi
 
 isDifferent=$(diff "$currentwallpaper" /home/archie/.config/wallpaperChanger/currentWallpaper >> /dev/null;echo $?)
 
 if [[ $isDifferent != "0" ]] || [[ ! -f $NEWBG ]]
 then
-	cp /home/archie/.config/wallpaperChanger/currentWallpaper /tmp/cw
+	cp /home/archie/.config/wallpaperChanger/currentWallpaper $currentwallpaper
 	cp "$(cat $currentwallpaper)" $TMPBG
-	convert $TMPBG -resize 1366x768\! $TMPBG
-	convert $TMPBG -blur 0x8 $NEWBG
+	convert $TMPBG -resize 1366x768\! $NEWBG
+	# convert $NEWBG -blur 8x8 $NEWBG
+	# convert $NEWBG -scale 20% -scale 500% $NEWBG
 	convert $NEWBG -fill black -colorize 40 $NEWBG
-	convert $NEWBG $ICON -gravity center -composite -matte $NEWBG
+	convert $NEWBG -colorspace gray $NEWBG
+	convert $RICON -resize 220x220\! $RICON
+	convert $NEWBG $RICON -gravity center -composite -matte $NEWBG
 fi
 
 
 #	Do some cool things
 ##Pixellate
-##convert $TMPBG -scale 10% -scale 1000% $TMPBG
 #
 ##Blur
 

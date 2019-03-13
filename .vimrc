@@ -20,7 +20,14 @@ call plug#end()
 	set encoding=utf-8
 	set number relativenumber
 	set nohlsearch
+	set tabstop=4
+	" set softtabstop
+	set noexpandtab
+	set shiftwidth=4
+	set ignorecase
 	set smartcase
+	set wrap
+	set linebreak
 " Disables automatic commenting on newline:
 	colorscheme ron
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
@@ -56,3 +63,5 @@ call plug#end()
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 	autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
+
+	let g:asmsyntax = 'nasm'
