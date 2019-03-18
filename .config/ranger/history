@@ -1,0 +1,14 @@
+mkdir .mpd
+shell touch pid
+qq
+mkdir Burning Cds
+shell nvim burning-cds.txt
+shell nvim burning-cds.md
+shell chmod o-w
+shell chmod o-w Notes 
+shell chmod g-w Notes 
+delete
+rename cover.jpg
+rename [2008] Attack and Release
+shell 
+search Black

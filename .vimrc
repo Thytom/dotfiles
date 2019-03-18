@@ -28,8 +28,12 @@ call plug#end()
 	set smartcase
 	set wrap
 	set linebreak
+
+	set vb
+	set t_vb=
 " Disables automatic commenting on newline:
 	colorscheme ron
+	set background=dark
 	autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Goyo plugin makes text more readable when writing prose:
