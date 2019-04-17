@@ -1,8 +1,6 @@
-"        _
-" __   _(_)_ __ ___  _ __ ___
-" \ \ / / | '_ ` _ \| '__/ __|
-"  \ V /| | | | | | | | | (__
-"   \_/ |_|_| |_| |_|_|  \___|
+" Vim/nVim .vimrc
+" Author: 	Archie Hilton
+" Email	:	archie.hilton1@gmail.com
 
 let mapleader =","
 
@@ -44,7 +42,7 @@ map <leader>f :Goyo \| set linebreak<CR>
 " Spell-check set to <leader>o, 'o' for 'orthography':
 map <leader>o :setlocal spell! spelllang=en_us<CR>
 
-" Splits open at the bottom and right, which is non-retarded, unlike vim defaults.
+" Splits open at the bottom and right
 set splitbelow splitright
 
 map <SPACE><SPACE> /<++><CR>cw
@@ -65,7 +63,8 @@ map <C-l> <C-w>l
 " Readmes autowrap text:
 autocmd BufRead,BufNewFile *.md set tw=79
 
-" Copy selected text to system clipboard (requires gvim/nvim/vim-x11 installed):
+" Copy selected text to system clipboard
+"	(requires gvim/nvim/vim-x11 installed)
 vnoremap <C-c> "+y
 map <C-p> "+P
 
@@ -93,5 +92,29 @@ vmap  <expr>  D        DVB_Duplicate()
 let g:DVB_TrimWS = 1
 
 " Faster Quitting if no changes were made
-
 nnoremap zz :q<CR>
+
+" Highlight 81st column
+highlight ColorColumn ctermbg=magenta
+call matchadd('ColorColumn', '\%81v', 100)
+
+" This rewires n and N to do the highlighing
+nnoremap <silent> n   n:call HLNext(0.01)<cr>
+nnoremap <silent> N   N:call HLNext(0.01)<cr>
+
+" Blink the line containing the match
+function! HLNext (blinktime)
+	set invcursorline
+	redraw
+	exec 'sleep ' . float2nr(a:blinktime * 1000) . 'm'
+	set invcursorline
+	redraw
+endfunction
+
+" Make tabs, trailing whitespace and non-breaking spaces visible
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
+
+" Swap : is used way more
+nnoremap  ;  :
+nnoremap  :  ;
