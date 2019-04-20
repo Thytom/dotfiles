@@ -39,8 +39,17 @@ HIGHLIGHT_TABWIDTH=8
 HIGHLIGHT_STYLE='pablo'
 PYGMENTIZE_STYLE='autumn'
 
+drop_bigsize() {
+    # 51200 == 50 MB * 1024
+    # change this number for different sizes
+    if [[ `du "${FILE_PATH}" | cut -f1` -gt 51200 ]]; then
+        echo '----- FILE TOO BIG -----'
+        exit 0
+    fi
+}
 
 handle_extension() {
+	drop_bigsize
     case "${FILE_EXTENSION_LOWER}" in
         # Archive
         a|ace|alz|arc|arj|bz|bz2|cab|cpio|deb|gz|jar|lha|lz|lzh|lzma|lzo|\
@@ -110,10 +119,10 @@ handle_image() {
             exit 7;;
 
         # Video
-        # video/*)
-        #     # Thumbnail
-        #     ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
-        #     exit 1;;
+        video/*)
+            # Thumbnail
+            ffmpegthumbnailer -i "${FILE_PATH}" -o "${IMAGE_CACHE_PATH}" -s 0 && exit 6
+            exit 1;;
         # PDF
         # application/pdf)
         #     pdftoppm -f 1 -l 1 \
@@ -169,6 +178,9 @@ handle_fallback() {
 
 
 MIMETYPE="$( file --dereference --brief --mime-type -- "${FILE_PATH}" )"
+
+# drop_bigsize
+
 if [[ "${PV_IMAGE_ENABLED}" == 'True' ]]; then
     handle_image "${MIMETYPE}"
 fi

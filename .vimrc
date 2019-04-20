@@ -9,6 +9,10 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-surround'
 	Plug 'rstacruz/sparkup'
 	Plug 'tomtom/tcomment_vim'
+	Plug 'jiangmiao/auto-pairs'
+	Plug 'bfrg/vim-cpp-modern'
+	Plug 'tpope/vim-markdown'
+	" Plug 'gabrielelana/vim-markdown'
 call plug#end()
 
 " Some basics:
@@ -32,9 +36,19 @@ set numberwidth=6
 set vb
 set t_vb=
 " Disables automatic commenting on newline:
-colorscheme ron
+colorscheme archie
 set background=dark
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+autocmd FileType md set textwidth=80
+
+" C/C++ Programming Helpers
+" autocmd FileType c,cpp call SetProgOptions()
+" function SetProgOptions()
+" 	inoremap { {<CR>}<ESC>O
+" 	inoremap " :call Quote()
+" 	inoremap ' ''<ESC>i
+" 	" inoremap ( ()<ESC>i
+" endfunction
 
 " Goyo plugin makes text more readable when writing prose:
 map <leader>f :Goyo \| set linebreak<CR>
@@ -95,7 +109,7 @@ let g:DVB_TrimWS = 1
 nnoremap zz :q<CR>
 
 " Highlight 81st column
-highlight ColorColumn ctermbg=magenta
+highlight ColorColumn ctermbg=yellow
 call matchadd('ColorColumn', '\%81v', 100)
 
 " This rewires n and N to do the highlighing
@@ -113,8 +127,15 @@ endfunction
 
 " Make tabs, trailing whitespace and non-breaking spaces visible
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
-set list
+nnoremap & :set list!<CR>
 
 " Swap : is used way more
-nnoremap  ;  :
-nnoremap  :  ;
+nnoremap ; :
+nnoremap : ;
+
+" Enable Goyo
+nnoremap gy :Goyo<CR>
+
+" Easier Tabs
+nnoremap <C-t> :tabnew<CR>
+nnoremap <C-n> :tabn<CR>

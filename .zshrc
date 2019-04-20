@@ -125,3 +125,12 @@ source $ZSH/oh-my-zsh.sh
 # zle -N zle-keymap-select
 #
 # export KEYTIMEOUT=1
+
+# Welcome Script
+DISKUSED=$(df /home/archie -h --output=used,size,pcent |\
+			awk 'NR==2{ print $3 " ("$1"/"$2")" }')
+
+
+
+# echo "$(date +'%A %d %B %Y')\t\t\t\t\t\t\tHome Usage: $DISKUSED"
+
