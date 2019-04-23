@@ -9,7 +9,7 @@ urxvt*depth:		32
 urxvt*background: 	[85]#111111
 urxvt*foreground: 	#FFFFFF
 urxvt*scrollBar:	false
-urxvt*geometry:		99x24
+urxvt*geometry:		150x38
 urxvt*font:		xft:Inconsolata:size=13
 ! urxvt*font:		xft:Dejavu Sans Mono:size=11
 !urxvt*font:		xft:Spleen:style=regular:size=13

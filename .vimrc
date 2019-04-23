@@ -15,6 +15,18 @@ call plug#begin('~/.vim/plugged')
 	" Plug 'gabrielelana/vim-markdown'
 call plug#end()
 
+let g:clipboard = {
+	  \   'name': 'myClipboard',
+	  \   'copy': {
+	  \      '+': 'wl-copy',
+	  \      '*': 'wl-copy',
+	  \    },
+	  \   'paste': {
+	  \      '+': 'xsel -bo',
+	  \      '*': 'xsel -bo',
+	  \   },
+	  \   'cache_enabled': 1,
+	  \ }
 " Some basics:
 set nocompatible
 filetype plugin on
@@ -39,7 +51,7 @@ set t_vb=
 colorscheme archie
 set background=dark
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
-autocmd FileType md set textwidth=80
+autocmd FileType md,c,cpp,html set textwidth=80
 
 " C/C++ Programming Helpers
 " autocmd FileType c,cpp call SetProgOptions()

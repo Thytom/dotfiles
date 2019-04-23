@@ -116,7 +116,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
-export PATH=/home/archie/.scripts:$PATH
+export PATH=/home/$USER/.scripts:$PATH
 RANGER_USE_DEFAULT_RC=false
 export EDITOR=/usr/bin/nvim
 # neofetch
