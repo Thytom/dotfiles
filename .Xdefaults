@@ -1,8 +1,8 @@
-Xft.dpi:                96
-Xft.antialias:          true
-Xft.rgba:               rgb
-Xft.hinting:            true
-Xft.hintstyle: 		hintslight
+Xft.dpi:			96
+Xft.antialias:		true
+Xft.rgba:			rgb
+Xft.hinting:		true
+Xft.hintstyle:		hintslight
 
 urxvt*cursor:		Bibata Ice
 urxvt*depth:		32
@@ -10,7 +10,7 @@ urxvt*background: 	[85]#111111
 urxvt*foreground: 	#FFFFFF
 urxvt*scrollBar:	false
 urxvt*geometry:		150x38
-urxvt*font:		xft:Inconsolata:size=13
+urxvt*font:			xft:Inconsolata:size=13
 ! urxvt*font:		xft:Dejavu Sans Mono:size=11
 !urxvt*font:		xft:Spleen:style=regular:size=13
 !urxvt*font:		xft:SF Pro Display:style=regular:size=11
@@ -24,7 +24,8 @@ urxvt*pointerBlank:	true
 URxvt.color0  : #000000
 URxvt.color8  : #555555
 ! red
-URxvt.color1  : #AA0000
+! URxvt.color1  : #AA3333
+URxvt.color1  : #CC3333
 URxvt.color9  : #FF5555
 ! green
 URxvt.color2  : #00AA00

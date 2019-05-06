@@ -52,6 +52,7 @@ colorscheme archie
 set background=dark
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd FileType md,c,cpp,html set textwidth=80
+autocmd Filetype c,cpp,sh,python call HLCC ()
 
 " C/C++ Programming Helpers
 " autocmd FileType c,cpp call SetProgOptions()
@@ -121,8 +122,10 @@ let g:DVB_TrimWS = 1
 nnoremap zz :q<CR>
 
 " Highlight 81st column
-highlight ColorColumn ctermbg=yellow
-call matchadd('ColorColumn', '\%81v', 100)
+function! HLCC ()
+	highlight ColorColumn ctermbg=yellow
+	call matchadd('ColorColumn', '\%81v', 100)
+endfunction
 
 " This rewires n and N to do the highlighing
 nnoremap <silent> n   n:call HLNext(0.01)<cr>
