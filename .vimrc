@@ -34,16 +34,17 @@ syntax on
 set encoding=utf-8
 set number relativenumber
 set nohlsearch
-set tabstop=4
+set tabstop=2
 " set softtabstop
 set noexpandtab
-set shiftwidth=4
+set shiftwidth=0
 set ignorecase
 set smartcase
 set wrap
 set linebreak
 set visualbell
 set numberwidth=6
+set foldlevelstart=99
 
 set vb
 set t_vb=
@@ -52,6 +53,7 @@ colorscheme archie
 set background=dark
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 autocmd FileType md,c,cpp,html set textwidth=80
+autocmd FileType md,c,cpp,html set foldmethod=indent
 autocmd Filetype c,cpp,sh,python call HLCC ()
 
 " C/C++ Programming Helpers
@@ -72,7 +74,7 @@ map <leader>o :setlocal spell! spelllang=en_us<CR>
 " Splits open at the bottom and right
 set splitbelow splitright
 
-map <SPACE><SPACE> /<++><CR>cw
+map <SPACE><SPACE> /<++><CR>c4l
 
 " Better tablation
 xnoremap > >gv

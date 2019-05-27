@@ -6,7 +6,8 @@ Xft.hintstyle:		hintslight
 
 urxvt*cursor:		Bibata Ice
 urxvt*depth:		32
-urxvt*background: 	[85]#111111
+! urxvt*background: 	[85]#111111
+urxvt*background: 	[95]#2e3440
 urxvt*foreground: 	#FFFFFF
 urxvt*scrollBar:	false
 urxvt*geometry:		150x38

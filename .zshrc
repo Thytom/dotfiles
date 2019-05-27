@@ -63,7 +63,7 @@ DISABLE_AUTO_UPDATE="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git zsh-syntax-highlighting)
 
 
 # User configuration
@@ -133,4 +133,3 @@ DISKUSED=$(df /home/archie -h --output=used,size,pcent |\
 
 
 # echo "$(date +'%A %d %B %Y')\t\t\t\t\t\t\tHome Usage: $DISKUSED"
-
