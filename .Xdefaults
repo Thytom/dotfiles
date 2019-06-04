@@ -5,21 +5,27 @@ Xft.hinting:		true
 Xft.hintstyle:		hintslight
 
 urxvt*cursor:		Bibata Ice
+
 urxvt*depth:		32
 ! urxvt*background: 	[85]#111111
 urxvt*background: 	[95]#2e3440
+urxvt*borderColor:  [95]#2e3440
+! urxvt*background:	rgba:0000/0000/0000/dddd
 urxvt*foreground: 	#FFFFFF
+
+urxvt*externalBorder:	0
+urxvt*internalBorder:	2
 urxvt*scrollBar:	false
 urxvt*geometry:		150x38
-urxvt*font:			xft:Inconsolata:size=13
-! urxvt*font:		xft:Dejavu Sans Mono:size=11
+urxvt*font:			xft:Inconsolata:size=13,xft:Noto Sans CJK HK:size=14
+!urxvt*font:		xft:Dejavu Sans Mono:size=11
 !urxvt*font:		xft:Spleen:style=regular:size=13
-!urxvt*font:		xft:SF Pro Display:style=regular:size=11
+! urxvt*font:		xft:SF Pro Display:style=regular:size=11
 urxvt*letterSpace:	0
-urxvt*perl-ext-common:	default,matcher,selection-to-clipboard,new-window
+urxvt*perl-ext-common:	default,matcher,selection-to-clipboard,new-window,fullscreen
 urxvt*pointerBlank:	true
 
-! urxvt.keysym.C-N: perl:new-window
+urxvt.keysym.F11: perl:fullscreen:switch
 
 ! black
 URxvt.color0  : #000000
@@ -35,7 +41,8 @@ URxvt.color10 : #55FF55
 URxvt.color3  : #f4c141
 URxvt.color11 : #FFFF55
 ! blue
-URxvt.color4  : #0000AA
+!URxvt.color4  : #0000AA
+URxvt.color4  : #3b79dd
 URxvt.color12 : #5555FF
 ! magenta
 URxvt.color5  : #AA00AA

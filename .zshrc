@@ -130,6 +130,11 @@ source $ZSH/oh-my-zsh.sh
 DISKUSED=$(df /home/archie -h --output=used,size,pcent |\
 			awk 'NR==2{ print $3 " ("$1"/"$2")" }')
 
+# ls when cd
+chpwd()
+{
+	ls
+}
 
-
-# echo "$(date +'%A %d %B %Y')\t\t\t\t\t\t\tHome Usage: $DISKUSED"
+export QT_QPA_PLATFORMTHEME=gtk2
+# xprop -f _KDE_NET_WM_BLUR_BEHIND_REGION 32c -set _KDE_NET_WM_BLUR_BEHIND_REGION 0 -id `xdotool search --class urxvt`

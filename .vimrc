@@ -1,40 +1,47 @@
 " Vim/nVim .vimrc
-" Author: 	Archie Hilton
+" Author: Archie Hilton
 " Email	:	archie.hilton1@gmail.com
 
-let mapleader =","
+let mapleader=','
 
 call plug#begin('~/.vim/plugged')
+	Plug 'bfrg/vim-cpp-modern'
+	Plug 'jiangmiao/auto-pairs'
 	Plug 'junegunn/goyo.vim'
-	Plug 'tpope/vim-surround'
 	Plug 'rstacruz/sparkup'
 	Plug 'tomtom/tcomment_vim'
-	Plug 'jiangmiao/auto-pairs'
-	Plug 'bfrg/vim-cpp-modern'
 	Plug 'tpope/vim-markdown'
+	Plug 'tpope/vim-surround'
+	Plug 'kovisoft/slimv'
 	" Plug 'gabrielelana/vim-markdown'
 call plug#end()
 
-let g:clipboard = {
-	  \   'name': 'myClipboard',
-	  \   'copy': {
-	  \      '+': 'wl-copy',
-	  \      '*': 'wl-copy',
-	  \    },
-	  \   'paste': {
-	  \      '+': 'xsel -bo',
-	  \      '*': 'xsel -bo',
-	  \   },
-	  \   'cache_enabled': 1,
-	  \ }
+" let g:clipboard = {
+" 	  \   'name': 'myClipboard',
+" 	  \   'copy': {
+" 	  \      '+': 'wl-copy',
+" 	  \      '*': 'wl-copy',
+" 	  \    },
+" 	  \   'paste': {
+" 	  \      '+': 'xsel -bo',
+" 	  \      '*': 'xsel -bo',
+" 	  \   },
+" 	  \   'cache_enabled': 1,
+" 	  \ }
+
+" Swap : and ;. : is used way more
+nnoremap ; :
+nnoremap : ;
+
 " Some basics:
 set nocompatible
 filetype plugin on
+filetype indent on
 syntax on
 set encoding=utf-8
 set number relativenumber
 set nohlsearch
-set tabstop=2
+set tabstop=4
 " set softtabstop
 set noexpandtab
 set shiftwidth=0
@@ -44,37 +51,33 @@ set wrap
 set linebreak
 set visualbell
 set numberwidth=6
-set foldlevelstart=99
+set foldlevelstart=0
+
+colorscheme archie
+set background=dark
+
+let g:asmsyntax = 'nasm'
 
 set vb
 set t_vb=
+
 " Disables automatic commenting on newline:
-colorscheme archie
-set background=dark
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+
 autocmd FileType md,c,cpp,html set textwidth=80
 autocmd FileType md,c,cpp,html set foldmethod=indent
-autocmd Filetype c,cpp,sh,python call HLCC ()
+autocmd FileType c,cpp,sh,python,lisp call HLCC ()
 
-" C/C++ Programming Helpers
-" autocmd FileType c,cpp call SetProgOptions()
-" function SetProgOptions()
-" 	inoremap { {<CR>}<ESC>O
-" 	inoremap " :call Quote()
-" 	inoremap ' ''<ESC>i
-" 	" inoremap ( ()<ESC>i
-" endfunction
-
-" Goyo plugin makes text more readable when writing prose:
-map <leader>f :Goyo \| set linebreak<CR>
-
-" Spell-check set to <leader>o, 'o' for 'orthography':
-map <leader>o :setlocal spell! spelllang=en_us<CR>
+" Disable jiangmiao's autopairs for lisp
+au FileType lisp let b:autopairs_loaded=1
 
 " Splits open at the bottom and right
 set splitbelow splitright
 
 map <SPACE><SPACE> /<++><CR>c4l
+
+" Set Spelling
+nnoremap <leader>s :set spell!<CR>
 
 " Better tablation
 xnoremap > >gv
@@ -97,18 +100,11 @@ autocmd BufRead,BufNewFile *.md set tw=79
 vnoremap <C-c> "+y
 map <C-p> "+P
 
-" " Easily move lines up and down
-" vnoremap <S-J> ddp
-" vnoremap <S-K> ddkP
-
 " Automatically deletes all trailing whitespace on save.
 autocmd BufWritePre * %s/\s\+$//e
 
 " Run xrdb whenever Xdefaults or Xresources are updated.
 autocmd BufWritePost ~/.Xresources,~/.Xdefaults !xrdb %
-
-let g:asmsyntax = 'nasm'
-
 
 " Visual dragging
 vmap  <expr>  <LEFT>   DVB_Drag('left')
@@ -146,13 +142,12 @@ endfunction
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 nnoremap & :set list!<CR>
 
-" Swap : is used way more
-nnoremap ; :
-nnoremap : ;
-
 " Enable Goyo
 nnoremap gy :Goyo<CR>
 
 " Easier Tabs
 nnoremap <C-t> :tabnew<CR>
 nnoremap <C-n> :tabn<CR>
+
+" Start swank server
+let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load ~/.vim/plugged/slimv/slime/start-swank.lisp"'
