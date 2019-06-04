@@ -14,6 +14,7 @@ alias q='exit'
 alias r='ranger'
 
 alias sp='sudo pacman -S'
+alias u='sudo pacman -Syyu'
 
 alias t='tmux'
 alias ta='tmux attach -t'
@@ -26,3 +27,5 @@ alias vim='nvim'
 alias vimrc='nvim /home/archie/.vimrc'
 
 alias yt='youtube-dl'
+
+alias e='emacs'

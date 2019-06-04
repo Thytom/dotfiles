@@ -13,6 +13,8 @@ call plug#begin('~/.vim/plugged')
 	Plug 'tpope/vim-markdown'
 	Plug 'tpope/vim-surround'
 	Plug 'kovisoft/slimv'
+	Plug 'dhruvasagar/vim-table-mode'
+	Plug 'jceb/vim-orgmode'
 	" Plug 'gabrielelana/vim-markdown'
 call plug#end()
 
@@ -51,7 +53,7 @@ set wrap
 set linebreak
 set visualbell
 set numberwidth=6
-set foldlevelstart=0
+set foldlevelstart=99
 
 colorscheme archie
 set background=dark
@@ -117,7 +119,7 @@ vmap  <expr>  D        DVB_Duplicate()
 let g:DVB_TrimWS = 1
 
 " Faster Quitting if no changes were made
-nnoremap zz :q<CR>
+" nnoremap zz :q<CR>
 
 " Highlight 81st column
 function! HLCC ()
