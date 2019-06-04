@@ -5,4 +5,7 @@
 .config/mpd/state
 .config/mpd/log
 .config/mpd/sticker.sql
+.emacs.d/*
+.emacs.d
+!.emacs.d/themes
 .ncmpcpp/error.log
