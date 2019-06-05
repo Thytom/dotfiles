@@ -101,7 +101,7 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 
 source ~/.bash_aliases
-export EDITOR='nvim'
+export EDITOR='emacs'
 source $ZSH/oh-my-zsh.sh
 
 # bindkey -v

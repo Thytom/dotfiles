@@ -16,6 +16,7 @@
 ;; Packages
 (require 'evil-surround)
 (require 'evil)
+(require 'autopair)
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -27,7 +28,7 @@
     ("2116ed2bb7af1ff05bef1d9caf654ae2820088c86d50c83cd8f90bf83ce0cbcc" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" default)))
  '(package-selected-packages
    (quote
-    (smart-mode-line evil-commentary use-package evil-surround))))
+    (writeroom-mode autopair smart-mode-line evil-commentary use-package evil-surround))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -62,6 +63,7 @@
 (menu-bar-mode -1) ; Disable Menu Bar
 (global-display-line-numbers-mode)
 (global-evil-surround-mode 1)
+(autopair-global-mode 1)
 
 ; (with-eval-after-load 'evil-maps
 ;   (define-key evil-motion-state-map (kbd ":") 'evil-repeat-find-char)
