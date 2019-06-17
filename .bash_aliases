@@ -29,3 +29,10 @@ alias vimrc='nvim /home/archie/.vimrc'
 alias yt='youtube-dl'
 
 alias e='emacs'
+
+alias todo='emacs ~/Notes/Todo/todo.org'
+
+shorten() {
+	curl -s "http://tinyurl.com/api-create.php?url=${1}"
+	echo
+}

@@ -1,11 +1,10 @@
 ;; load emacs 24's package system. Add MELPA repository.
 (when (>= emacs-major-version 24)
-  (require 'package)
-  (add-to-list
-   'package-archives
+  (require 'package) (add-to-list 'package-archives
    ;; '("melpa" . "http://stable.melpa.org/packages/") ; many packages won't show if using stable
    '("melpa" . "http://melpa.milkbox.net/packages/")
    t))
+
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -14,8 +13,8 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 ;; Packages
-(require 'evil-surround)
 (require 'evil)
+(require 'evil-surround)
 (require 'autopair)
 
 (custom-set-variables
@@ -28,7 +27,7 @@
     ("2116ed2bb7af1ff05bef1d9caf654ae2820088c86d50c83cd8f90bf83ce0cbcc" "a27c00821ccfd5a78b01e4f35dc056706dd9ede09a8b90c6955ae6a390eb1c1e" "c74e83f8aa4c78a121b52146eadb792c9facc5b1f02c917e3dbb454fca931223" default)))
  '(package-selected-packages
    (quote
-    (writeroom-mode autopair smart-mode-line evil-commentary use-package evil-surround))))
+    (evil-terminal-cursor-changer evil-org ## writeroom-mode autopair smart-mode-line evil-commentary use-package evil-surround))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -36,20 +35,20 @@
  ;; If there is more than one, they won't work right.
  )
 
+;; Transparent background
 (defun on-after-init ()
   (unless (display-graphic-p (selected-frame))
     (set-face-background 'default "unspecified-bg" (selected-frame))))
 
 (add-hook 'window-setup-hook 'on-after-init)
+(add-hook 'text-mode-hook 'auto-fill-mode)
 
 ;; User defined settings
 
 (setq backup-directory-alist `(("." . "~/.emacs.d/saves")))
 (setq backup-by-copying t)
 (setq x-select-enable-clipboard nil)
-(setq sml/theme 'light)
-
-(sml/setup)
+(setq-default tab-width 2)
 
 (load-theme 'zenburn)
 
@@ -57,19 +56,32 @@
 (set-frame-parameter (selected-frame) 'alpha '(85 85))
 (add-to-list 'default-frame-alist '(alpha 85 85))
 
-
 (evil-mode 1) ; Vim-Like
 (evil-commentary-mode 1) ; Commenting with gcc
 (menu-bar-mode -1) ; Disable Menu Bar
 (global-display-line-numbers-mode)
 (global-evil-surround-mode 1)
 (autopair-global-mode 1)
+(show-paren-mode 1) ; Show paired parenthesis
+(setf org-startup-indented t)
+(setq evil-want-C-i-jump nil)
+(setq evil-insert-state-cursor '("#e2e222" bar))
+(setq-default fill-column 80)
 
-; (with-eval-after-load 'evil-maps
-;   (define-key evil-motion-state-map (kbd ":") 'evil-repeat-find-char)
-;   (define-key evil-motion-state-map (kbd ";") 'evil-ex))
+;; Linux formatting
+(setq c-default-style "linux"
+          c-basic-offset 4)
 
 ;; Start emacs with an empty buffer
 (setf inhibit-splash-screen t)
+(setf vc-follow-symlinks nil)
 (switch-to-buffer (get-buffer-create "Empty Buffer"))
 (delete-other-windows)
+
+;; Bindings
+(with-eval-after-load 'evil-maps
+  (define-key evil-motion-state-map (kbd ":") 'evil-repeat-find-char)
+  (define-key evil-motion-state-map (kbd ";") 'evil-ex)
+  )
+
+(evil-define-key 'normal org-mode-map (kbd "TAB") #'org-cycle)

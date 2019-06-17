@@ -16,10 +16,11 @@ urxvt*foreground: 	#FFFFFF
 urxvt*externalBorder:	0
 urxvt*internalBorder:	2
 urxvt*scrollBar:	false
-urxvt*geometry:		150x38
-urxvt*font:			xft:Inconsolata:size=13,xft:Noto Sans CJK HK:size=14
-!urxvt*font:		xft:Dejavu Sans Mono:size=11
-!urxvt*font:		xft:Spleen:style=regular:size=13
+! urxvt*geometry:		136x45
+! urxvt*font:			xft:Spleen:style=regular:size=14,xft:Noto Sans CJK HK:size=1
+urxvt*geometry:		150x40
+urxvt*font:		xft:Inconsolata:size=13,xft:Noto Sans CJK HK:size=14
+! urxvt*font:		xft:Dejavu Sans Mono,xft:Noto Sans CJK HK:size=11
 ! urxvt*font:		xft:SF Pro Display:style=regular:size=11
 urxvt*letterSpace:	0
 urxvt*perl-ext-common:	default,matcher,selection-to-clipboard,new-window,fullscreen
