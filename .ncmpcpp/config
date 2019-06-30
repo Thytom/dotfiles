@@ -327,7 +327,7 @@ message_delay_time = 1
 ##
 #user_interface = classic
 #
-#data_fetching_delay = yes
+data_fetching_delay = no
 #
 ## Available values: artist, album_artist, date, genre, composer, performer.
 ##
