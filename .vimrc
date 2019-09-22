@@ -6,15 +6,17 @@ let mapleader=','
 
 call plug#begin('~/.vim/plugged')
 	Plug 'bfrg/vim-cpp-modern'
+	Plug 'dhruvasagar/vim-table-mode'
+	Plug 'jceb/vim-orgmode'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'junegunn/goyo.vim'
+	Plug 'kovisoft/slimv'
+	Plug 'matze/vim-tex-fold'
+	Plug 'neovimhaskell/haskell-vim'
 	Plug 'rstacruz/sparkup'
 	Plug 'tomtom/tcomment_vim'
 	Plug 'tpope/vim-markdown'
 	Plug 'tpope/vim-surround'
-	Plug 'kovisoft/slimv'
-	Plug 'dhruvasagar/vim-table-mode'
-	Plug 'jceb/vim-orgmode'
 	" Plug 'gabrielelana/vim-markdown'
 call plug#end()
 
@@ -66,9 +68,13 @@ set t_vb=
 " Disables automatic commenting on newline:
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
-autocmd FileType md,c,cpp,html set textwidth=80
+autocmd FileType tex,md,c,cpp,html set textwidth=80
 autocmd FileType md,c,cpp,html set foldmethod=indent
+" autocmd FileType tex set foldmethod=syntax
 autocmd FileType c,cpp,sh,python,lisp call HLCC ()
+
+nnoremap <leader>p :!lualatex %<CR><CR>
+nnoremap <leader>o :!zathura *.pdf &<CR><CR>
 
 " Disable jiangmiao's autopairs for lisp
 au FileType lisp let b:autopairs_loaded=1
@@ -115,6 +121,13 @@ vmap  <expr>  <DOWN>   DVB_Drag('down')
 vmap  <expr>  <UP>     DVB_Drag('up')
 vmap  <expr>  D        DVB_Duplicate()
 
+" LaTeX
+nnoremap <leader>z i\section{}<ESC>i
+nnoremap <leader><leader>z i\subsection{}<ESC>i
+nnoremap <leader><leader><leader>z i\subsubsection{}<ESC>i
+nnoremap <leader>be i\begin{<++>}<CR>\end{<++>}<ESC>Vk:s/<++>/
+nnoremap <leader>bo a\textbf{
+
 " Remove any introduced trailing whitespace after moving...
 let g:DVB_TrimWS = 1
 
@@ -153,3 +166,4 @@ nnoremap <C-n> :tabn<CR>
 
 " Start swank server
 let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load ~/.vim/plugged/slimv/slime/start-swank.lisp"'
+
