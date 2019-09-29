@@ -7,7 +7,7 @@ let mapleader=','
 call plug#begin('~/.vim/plugged')
 	Plug 'bfrg/vim-cpp-modern'
 	Plug 'dhruvasagar/vim-table-mode'
-	Plug 'jceb/vim-orgmode'
+	" Plug 'jceb/vim-orgmode'
 	Plug 'jiangmiao/auto-pairs'
 	Plug 'junegunn/goyo.vim'
 	Plug 'kovisoft/slimv'
@@ -15,7 +15,7 @@ call plug#begin('~/.vim/plugged')
 	Plug 'neovimhaskell/haskell-vim'
 	Plug 'rstacruz/sparkup'
 	Plug 'tomtom/tcomment_vim'
-	Plug 'tpope/vim-markdown'
+	Plug 'plasticboy/vim-markdown'
 	Plug 'tpope/vim-surround'
 	" Plug 'gabrielelana/vim-markdown'
 call plug#end()
@@ -90,6 +90,9 @@ nnoremap <leader>s :set spell!<CR>
 " Better tablation
 xnoremap > >gv
 xnoremap < <gv
+
+" Open folds with tab in normal mode
+nnoremap <tab> za
 
 " Better Digraphs
 inoremap <expr> <C-K>	BDG_GetDigraph()
@@ -166,4 +169,18 @@ nnoremap <C-n> :tabn<CR>
 
 " Start swank server
 let g:slimv_swank_cmd = '! tmux new-window -d -n REPL-SBCL "sbcl --load ~/.vim/plugged/slimv/slime/start-swank.lisp"'
+
+" Syntax Finder
+function! GetSyntaxID()
+    return synID(line('.'), col('.'), 1)
+endfunction
+
+function! GetSyntaxParentID()
+    return synIDtrans(GetSyntaxID())
+endfunction
+
+function! GetSyntax()
+    echo synIDattr(GetSyntaxID(), 'name')
+    exec "hi ".synIDattr(GetSyntaxParentID(), 'name')
+endfunction
 

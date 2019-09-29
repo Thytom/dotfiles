@@ -4,14 +4,16 @@ Xft.rgba:			rgb
 Xft.hinting:		true
 Xft.hintstyle:		hintslight
 
+Xcursor.theme:		Breeze
+
 urxvt*cursor:		Capitaine
 
 urxvt*externalBorder:	0
-urxvt*internalBorder:	0
+urxvt*internalBorder:	5
 urxvt*scrollBar:	false
 urxvt*geometry:		130x35
-urxvt*font:		xft:Inconsolata:size=13,xft:Noto Sans CJK HK:size=10
-urxvt*letterSpace:	0
+urxvt*font:		xft:Inconsolata:size=11,xft:Noto Sans CJK HK:size=10
+! urxvt*letterSpace:	0
 urxvt*perl-ext-common:	default,matcher,selection-to-clipboard,new-window,fullscreen
 urxvt*pointerBlank:	true
 
@@ -20,8 +22,8 @@ urxvt.keysym.F11: perl:fullscreen:switch
 urxvt*depth:		32
 ! urxvt*background: 	[95]#2e3440
 ! urxvt*borderColor:  [95]#2e3440
-urxvt*background: 	[85]#2e3440
-urxvt*borderColor:  [85]#2e3440
+urxvt*background: 	[90]#1a2330
+urxvt*borderColor:  [90]#1a2330
 urxvt*foreground: 	#FFFFFF
 
 ! black

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+WALLPAPER=/home/$USER/.wallpaper
+
 if [ ! -f "$1" ];
 then
     echo "ERROR: $1 does not exist."
@@ -9,7 +11,10 @@ fi
 IMGDIR=$(/usr/bin/realpath $(echo "$1" | sed 's/ /\\ /g'))
 
 echo "Changing Wallpaper to $1..."
-feh --bg-scale $IMGDIR
-echo "$IMGDIR" > $HOME/.config/wallpaperChanger/currentWallpaper
+feh --bg-scale "$IMGDIR"
+/usr/bin/ln -sf "$IMGDIR" "$WALLPAPER"
 echo "Done."
+echo "Deleting Lock Screen..."
+rm /tmp/lockscreen.png
+echo "Done"
 exit 0
