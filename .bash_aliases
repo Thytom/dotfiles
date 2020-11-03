@@ -36,3 +36,7 @@ shorten() {
 	curl -s "http://tinyurl.com/api-create.php?url=${1}"
 	echo
 }
+
+alias rickroll="curl -L http://bit.ly/10hA8iC | bash"
+# you're welcome ∧∧
+
